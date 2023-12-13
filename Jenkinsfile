@@ -38,8 +38,9 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'DOCKER_HUB') {
-                        echo 'Push to Repo'
-                        docker push test-jenkins/cicd-e2e:${BUILD_NUMBER}
+                    echo 'Push to Repo'
+                    docker push test-jenkins/cicd-e2e:${BUILD_NUMBER}
+                    ...
                     }
                 }
             }
