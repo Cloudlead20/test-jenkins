@@ -1,26 +1,35 @@
 pipeline {
-    agent any
+  agent any 
+    
+    environment {
+        IMAGE_TAG = "${BUILD_NUMBER}"
+    }
 
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+                 git credentialsId: 'JENKIN_GITHUB_TOKEN', 
+                 url: 'https://github.com/Cloudlead20/test-jenkins',
+                 branch: 'master'
             }
         }
 
-        stage('Build and Test') {
-            steps {
-                script {
-                    sh 'npm install'
-                    sh 'npm test'
-                }
-            }
-        }
+        // stage('Build and Test') {
+        //     steps {
+        //         script {
+        //             sh 'npm install'
+        //             sh 'npm test'
+        //         }
+        //     }
+        // }
 
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build('your-docker-image-name')
+                    sh '''
+                    echo 'Buid Docker Image'
+                    docker build -t test-jenkins/cicd-e2e:${BUILD_NUMBER} .
+                    '''
                 }
             }
         }
@@ -29,7 +38,8 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'DOCKER_HUB') {
-                        docker.image('your-docker-image-name').push()
+                        echo 'Push to Repo'
+                        docker push test-jenkins/cicd-e2e:${BUILD_NUMBER}
                     }
                 }
             }
