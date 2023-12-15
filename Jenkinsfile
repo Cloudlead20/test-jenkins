@@ -31,7 +31,7 @@ pipeline {
            steps{
                 script{
                     sh'''
-                    withCredentials([usernamePassword(credentialsId: DOCKER_HUB, Username: 'DOCKER_USERNAME', Password: 'DOCKER_PASSWORD')]) {
+                    withCredentials([usernamePassword(credentialsId: DOCKER_HUB, Username: 'DOCKER_USERNAME', Password: 'DOCKER_PASSWORD')]) 
                     docker login -u muthuarumugam/test-jenkins:${BUILD_NUMBER}
                     docker push muthuarumugam/test-jenkins:${BUILD_NUMBER}
                     '''
