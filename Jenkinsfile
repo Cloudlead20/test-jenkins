@@ -27,17 +27,17 @@ pipeline {
             }
         }
 
-        stage('Push the dockerhub'){
-           steps{
-                script{
-                    sh '''
-                    echo 'Push'
-                    //docker build -t muthuarumugam/test-jenkins:${BUILD_NUMBER} .
-                    '''
+        // stage('Push the dockerhub'){
+        //    steps{
+        //         script{
+        //             sh '''
+        //             echo 'Push'
+        //             docker build -t muthuarumugam/test-jenkins:${BUILD_NUMBER} .
+        //             '''
                 
-                }
-            }
-        }
+        //         }
+        //     }
+        // }
         
  
     }  
