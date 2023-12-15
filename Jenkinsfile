@@ -36,7 +36,7 @@ pipeline {
                 script{
                     sh '''
                     echo 'Push'
-                    docker push "$($ DOCKER_IMAGE):${BUILD_NUMBER}"
+                    docker push muthuarumugam/test-jenkins:${BUILD_NUMBER}
                     '''
                 
                 }
