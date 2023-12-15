@@ -36,6 +36,7 @@ pipeline {
                 script{
                     sh '''
                     echo 'Push'
+                    docker login -u
                     docker push muthuarumugam/test-jenkins:${BUILD_NUMBER}
                     '''
                 
