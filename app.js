@@ -1,14 +1,11 @@
 const http = require('http');
 
-const hostname = '51.21.130.80';
-const port = 3000;
-
 const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello , !\n');
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end('Hello, Node.js!\n');
 });
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+const PORT = 3000;
+server.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}/`);
 });
