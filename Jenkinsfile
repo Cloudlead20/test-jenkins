@@ -19,10 +19,10 @@ pipeline {
         stage('Build Docker'){
             steps{
                 script{
-                    shc
+                    sh '''
                     echo 'Buid Docker Image'
                     docker build -t muthuarumugam/test-jenkins:${BUILD_NUMBER} .
-                   
+                    '''
                 }
             }
         }
