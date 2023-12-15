@@ -36,10 +36,7 @@ pipeline {
                 script{
                     sh '''
                     echo 'Push'
-                    def dockerImage = docker.image("${DOCKER_IMAGE}")
-                    docker.withRegistry('https://index.docker.io/v1/', "DOCKER_HUB") {
-                    dockerImage.push()
-                    }
+                    docker push -u muthuarumugam/test-jenkins:${BUILD_NUMBER}
                     '''
                 
                 }
