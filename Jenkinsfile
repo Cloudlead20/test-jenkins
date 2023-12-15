@@ -34,12 +34,12 @@ pipeline {
         stage('Push the dockerhub'){
            steps{
                 script{
-                    //Authenticate with Docker registry using credentials
+                    sh'''
                     withCredentials([usernamePassword(credentialsId: DOCKER_HUB, usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-                    // Build and push Docker image
-                    // sh "docker build -t $DOCKER_REGISTRY/$DOCKER_IMAGE:latest ."
-                    sh "docker login -u muthuarumugam/test-jenkins:${BUILD_NUMBER}"
-                    sh "docker push muthuarumugam/test-jenkins:${BUILD_NUMBER}"
+                    docker login -u muthuarumugam/test-jenkins:${BUILD_NUMBER}
+                    docker push muthuarumugam/test-jenkins:${BUILD_NUMBER}
+                    '''
+                }
                 }
             }
         }
