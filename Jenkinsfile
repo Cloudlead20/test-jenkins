@@ -34,7 +34,7 @@ pipeline {
         stage('Push the dockerhub'){
            steps{
                 script{
-                    Authenticate with Docker registry using credentials
+                    //Authenticate with Docker registry using credentials
                     withCredentials([usernamePassword(credentialsId: DOCKER_HUB, usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                     // Build and push Docker image
                     // sh "docker build -t $DOCKER_REGISTRY/$DOCKER_IMAGE:latest ."
