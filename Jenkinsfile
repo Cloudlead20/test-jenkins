@@ -30,11 +30,11 @@ pipeline {
         stage('Push the dockerhub'){
            steps{
                 script{
-                    sh '''
+                  
                     echo 'Push to Repo'
                     REGISTRY_CREDENTIALS = credentials('DOCKER_HUB')
                     docker push muthuarumugam/test-jenkins:${BUILD_NUMBER}
-                    '''
+                  
                 }
             }
         }
