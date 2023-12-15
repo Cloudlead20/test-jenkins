@@ -22,7 +22,7 @@ pipeline {
                     shc
                     echo 'Buid Docker Image'
                     docker build -t muthuarumugam/test-jenkins:${BUILD_NUMBER} .
-                   c
+                   
                 }
             }
         }
