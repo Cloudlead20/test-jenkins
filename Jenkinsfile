@@ -21,7 +21,7 @@ pipeline {
                 script{
                     sh '''
                     echo 'Buid Docker Image'
-                    docker build -t test-jenkins/cicd-e2e:${BUILD_NUMBER} .
+                    docker build -t muthuarumugam/test-jenkins:${BUILD_NUMBER} .
                     '''
                 }
             }
@@ -32,7 +32,7 @@ pipeline {
                 script{
                     sh '''
                     echo 'Push to Repo'
-                    docker push test-jenkins/cicd-e2e:${BUILD_NUMBER}
+                    docker push muthuarumugam/test-jenkins:${BUILD_NUMBER}
                     '''
                 }
             }
