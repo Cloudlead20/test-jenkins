@@ -1,3 +1,7 @@
+credentials {
+    id 'DOCKER_HUB'
+}
+
 pipeline {
     
     agent any 
