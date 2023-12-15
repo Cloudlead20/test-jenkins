@@ -4,6 +4,8 @@ pipeline {
     
     environment {
         IMAGE_TAG = "${BUILD_NUMBER}"
+        DOCKERHUB_CREDENTIALS = credentials('DOCKER_HUB')
+
     }
     
     stages {
@@ -27,16 +29,24 @@ pipeline {
             }
         }
 
+
+
+             stage('Login into Docker hub'){
+                 steps{
+                     script{
+                         sh '''
+                         echo 'Buid Docker Image'
+                         echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin
+                         '''
+                }
+            }
+        }
+
         stage('Push the dockerhub'){
-              environment {
-                DOCKER_IMAGE = "muthuarumugam/test-jenkins:${BUILD_NUMBER}"
-                REGISTRY_CREDENTIALS = credentials('DOCKER_HUB')
-              }
-           steps{
+            steps{
                 script{
                     sh '''
                     echo 'Push'
-                    docker login -u
                     docker push muthuarumugam/test-jenkins:${BUILD_NUMBER}
                     '''
                 
