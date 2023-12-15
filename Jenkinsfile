@@ -39,13 +39,13 @@ pipeline {
                     docker login -u muthuarumugam/test-jenkins:${BUILD_NUMBER}
                     docker push muthuarumugam/test-jenkins:${BUILD_NUMBER}
                     '''
-                }
+                
                 }
             }
         }
         
  
-        
+    }  
 
     }
 }
