@@ -1,0 +1,35 @@
+
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: muthuarumugam/test-jenkins:44 
+        ports:
+        - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+spec:
+  selector:
+    app.kubernetes.io/name: nginx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: LoadBalancer
+controlplane $ kubectl get svc
+NAME         TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+kubernetes   ClusterIP      10.96.0.1        <none>        443/TCP        7d1h
+my-service   LoadBalancer   10.110.246.221   <pending>     80:32125/TCP   3m26s
+controlplane $ nslookup  10.110.246.221
+** server can't find 221.246.110.10.in-addr.arpa: NXDOMAIN
+
+controlplane $ ^C
+controlplane $ ^C
+controlplane $ 
